@@ -1,0 +1,303 @@
+.page {
+  padding: 25px;
+  background: #eef3f8;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+p {
+  color: #555;
+}
+
+.top-actions {
+  margin: 20px 0;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.add-btn {
+  padding: 12px 18px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.filter-box {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px #c8c8c8;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.filter-box select {
+  padding: 8px;
+  width: 140px;
+}
+
+.table-card {
+  width: 95%;
+  background: white;
+  box-shadow: 0 4px 12px #c8c8c8;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  background: white;
+  border-collapse: collapse;
+}
+
+th {
+  background: #1976d2;
+  color: white;
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.active {
+  background: #d4edda;
+  color: green;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.inactive {
+  background: #f8d7da;
+  color: red;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.edit-btn {
+  padding: 8px 12px;
+  background: #f4b400;
+  border: none;
+  border-radius: 6px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  padding: 8px 12px;
+  background: #d7263d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.form-box {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px #c8c8c8;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.form-box input,
+.form-box select {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.save-btn {
+  padding: 10px 15px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+.cancel-btn {
+  padding: 10px 15px;
+  background: #777;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-left: 8px;
+}
+.error-box {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
+
+.error-box small {
+  display: block;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid green;
+}
+
+.save-btn:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+.error-box {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
+
+.error-box small {
+  display: block;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid green;
+}
+
+.save-btn:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+.form-box form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-box form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-box {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.error-box small {
+  display: block;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid green;
+}
+
+.save-btn:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+.form-box form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-box {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.error-box small {
+  display: block;
+}
+.form-box form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-box {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  max-width: 220px;
+}
+
+.error-box small {
+  display: block;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid green;
+}
+
+.save-btn:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+.page {
+  min-height: 100vh;
+  padding: 25px;
+
+  background-image:
+    linear-gradient(
+      rgba(240,245,250,0.65),
+      rgba(240,245,250,0.65)
+    ),
+    url('https://media.witzenmann.com/mediapool/karriere-bereich/header-ma-produktion_headervisualmobile.jpg?r=455471');
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.filter-box,
+.table-card {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(4px);
+}

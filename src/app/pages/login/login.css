@@ -1,0 +1,92 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eef3f8;
+  font-family: Arial, sans-serif;
+}
+
+.login-box {
+  width: 360px;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px #b8b8b8;
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.error-box {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.error-box small {
+  display: block;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid green;
+}
+
+.role-text {
+  margin-top: 15px;
+  color: #555;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 13px;
+  color: #777;
+}
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url('https://www.augmentir.com/wp-content/uploads/2025/04/smart-factory-digital-manufacturing.webp');
+  background-size: cover;
+  background-position: center;
+
+  font-family: Arial, sans-serif;
+}
+

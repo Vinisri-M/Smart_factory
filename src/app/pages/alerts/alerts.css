@@ -1,0 +1,148 @@
+.page {
+  padding: 25px;
+  background: #eef3f8;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+p {
+  color: #555;
+}
+
+.filter-box {
+  margin: 20px 0;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px #c8c8c8;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  align-items: center;
+  width: fit-content;
+}
+
+.filter-box select,
+.filter-box input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.filter-box button {
+  padding: 9px 16px;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.table-card {
+  width: 95%;
+  background: white;
+  box-shadow: 0 4px 12px #c8c8c8;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #1976d2;
+  color: white;
+}
+
+th, td {
+  padding: 14px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.high {
+  color: red;
+  font-weight: bold;
+}
+
+.medium {
+  color: orange;
+  font-weight: bold;
+}
+
+.low {
+  color: green;
+  font-weight: bold;
+}
+
+.yes {
+  color: green;
+  font-weight: bold;
+}
+
+.no {
+  color: red;
+  font-weight: bold;
+}
+
+.ack-btn {
+  background: #1976d2;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.view-btn {
+  background: #777;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+}
+
+.no-data {
+  margin-top: 20px;
+  color: red;
+  font-weight: bold;
+}
+.info-msg{
+  color:#555;
+  font-size:14px;
+  margin:10px 0;
+}
+
+.error-msg{
+  color:red;
+  font-size:14px;
+  font-weight:bold;
+  margin:10px 0;
+}
+.page {
+  min-height: 100vh;
+  padding: 25px;
+
+  background-image:
+    linear-gradient(
+      rgba(240,245,250,0.65),
+      rgba(240,245,250,0.65)
+    ),
+    url('https://images.openai.com/static-rsc-4/O23LeOj9Lsnm3UaJ9cAZnPPliuMekgFCBwxDkJ9q3pT8cYCkD5-n2E2BIJNacTFZL2oHZL33iabyG_kIZPDshIhjKATjQqaY1A_3UmKBRFv6rQ1XFSxuteu0nF4RlHH4pnX97TJuLIrqoU6ta01z6BjVBbNb6Ul5xw3ooL6VhNI?purpose=inline');
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.filter-box,
+.table-card {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(4px);
+}

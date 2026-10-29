@@ -1,0 +1,162 @@
+<div class="page">
+  <h1>User Management</h1>
+  <p>Admin can manage users and role-based access</p>
+
+  <div class="top-actions">
+    <button class="add-btn" (click)="openAddForm()">+ Add User</button>
+    <button class="reset-btn" (click)="resetUsers()">Reset Users</button>
+
+    <div class="filter-box">
+      <label>Select Role:</label>
+      <select [(ngModel)]="selectedRole">
+        <option *ngFor="let role of roles" [value]="role">
+          {{ role }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-box" [hidden]="!showForm">
+    <form #userForm="ngForm">
+      <div class="form-header">
+        <h3>{{ editIndex === null ? 'Add User' : 'Edit User' }}</h3>
+      </div>
+      <div class="field-group">
+        <input
+          type="text"
+          name="empId"
+          placeholder="EMP ID"
+          [(ngModel)]="formUser.empId"
+          required
+          minlength="6"
+          pattern="^(ADM|SUP|OPR|MNT)[0-9]{3}$"
+          #empIdCtrl="ngModel"
+        >
+
+        <div class="error-box" *ngIf="empIdCtrl.invalid && empIdCtrl.touched">
+          <small *ngIf="empIdCtrl.errors?.['required']">EMP ID is required</small>
+          <small *ngIf="empIdCtrl.errors?.['minlength']">Minimum 6 characters required</small>
+          <small *ngIf="empIdCtrl.errors?.['pattern']">
+            EMP ID must be like ADM001, SUP101, OPR201, or MNT301
+          </small>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <input
+          type="text"
+          name="name"
+          placeholder="User name"
+          [(ngModel)]="formUser.name"
+          required
+          minlength="3"
+          #nameCtrl="ngModel"
+        >
+      </div>
+
+      <div class="field-group">
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          [(ngModel)]="formUser.password"
+          required
+          minlength="4"
+          #passwordCtrl="ngModel"
+        >
+
+        <div class="error-box" *ngIf="passwordCtrl.invalid && passwordCtrl.touched">
+          <small *ngIf="passwordCtrl.errors?.['required']">Password is required</small>
+          <small *ngIf="passwordCtrl.errors?.['minlength']">Minimum 4 characters required</small>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <select name="role" [(ngModel)]="formUser.role" required>
+          <option value="Admin">Admin</option>
+          <option value="Supervisor">Supervisor</option>
+          <option value="Operator">Operator</option>
+          <option value="Maintenance">Maintenance</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <select name="status" [(ngModel)]="formUser.status" required>
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <input
+          type="text"
+          name="lastLogin"
+          placeholder="Last Login e.g. 10:30 AM"
+          [(ngModel)]="formUser.lastLogin"
+          required
+          pattern="^(0?[1-9]|1[0-2]):[0-5][0-9] ?(AM|PM)$"
+          #lastLoginCtrl="ngModel"
+        >
+
+        <div class="error-box" *ngIf="lastLoginCtrl.invalid && lastLoginCtrl.touched">
+          <small *ngIf="lastLoginCtrl.errors?.['required']">
+            Last login time is required
+          </small>
+
+          <small *ngIf="lastLoginCtrl.errors?.['pattern']">
+            Enter time like 10:30 AM
+          </small>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="save-btn"
+        [disabled]="userForm.invalid"
+        (click)="saveUser()">
+        Save
+      </button>
+
+      <button
+        type="button"
+        class="cancel-btn"
+        (click)="cancelForm()">
+        Cancel
+      </button>
+    </form>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <tr>
+        <th>EMP ID</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Last Login</th>
+        <th>Actions</th>
+      </tr>
+
+      <tr *ngFor="let user of filteredUsers">
+        <td>{{ user.empId }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.role }}</td>
+
+        <td>
+          <span
+            [class.active]="user.status === 'Active'"
+            [class.inactive]="user.status === 'Inactive'">
+            {{ user.status }}
+          </span>
+        </td>
+
+        <td>{{ user.lastLogin }}</td>
+
+        <td>
+          <button class="edit-btn" (click)="editUser(user)">Edit</button>
+          <button class="delete-btn" (click)="deleteUser(user)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

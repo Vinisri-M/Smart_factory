@@ -1,0 +1,129 @@
+.page {
+  padding: 25px;
+  background: #eef3f8;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+p {
+  color: #555;
+}
+
+.filter-box {
+  margin: 20px 0;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px #c8c8c8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  width: fit-content;
+}
+
+.filter-box select,
+.filter-box input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.filter-box button {
+  padding: 9px 16px;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.table-card {
+  width: 95%;
+  background: white;
+  box-shadow: 0 4px 12px #c8c8c8;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #1976d2;
+  color: white;
+}
+
+th, td {
+  padding: 14px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background: #f5f5f5;
+}
+
+.no-data {
+  margin-top: 20px;
+  color: red;
+  font-weight: bold;
+}
+.info-msg {
+  color: #555;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.error-msg {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+.info-msg {
+  color: #555;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.error-msg {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.no-data {
+  color: red;
+  font-weight: bold;
+  margin-top: 15px;
+}
+.page {
+  min-height: 100vh;
+  padding: 25px;
+
+  background-image:
+    linear-gradient(
+      rgba(240,245,250,0.65),
+      rgba(240,245,250,0.65)
+    ),
+    url('https://images.openai.com/static-rsc-4/2zn5l1PAPRT8EGELUoy7w2hJTpGdBkiiYrJVoAMYBlaOChi_hKRXXnCvpSZK4tyvO2AVtde4ivzu_p3Zkk_anw_pv-63kt85DlZbgnY-ljWr3NQQLgaYG6kDwYVrZoiA4P4ag8TX0iYp3j72eRMuXMN5TAl9k-hm1PyGdtEjq6Cz4Y3oSt9rP9IsZsCUPYr3?purpose=fullsize');
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.filter-box,
+.table-card {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(4px);
+}
+

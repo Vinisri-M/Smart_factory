@@ -1,0 +1,63 @@
+<div class="page">
+  <h1>Downtime</h1>
+  <p>Machines stopped or not working for a period of time</p>
+
+  <div class="filter-box">
+    <label>Machine:</label>
+    <select [(ngModel)]="machineFilter">
+      <option *ngFor="let machine of machines" [value]="machine">
+        {{ machine }}
+      </option>
+    </select>
+
+    <label>From:</label>
+    <input type="date" [(ngModel)]="fromDate">
+
+    <label>To:</label>
+    <input type="date" [(ngModel)]="toDate">
+
+    <label>Reason:</label>
+    <select [(ngModel)]="reasonFilter">
+      <option *ngFor="let reason of reasons" [value]="reason">
+        {{ reason }}
+      </option>
+    </select>
+
+    <button (click)="clearFilters()">Clear</button>
+  </div>
+
+  <p class="info-msg" *ngIf="!fromDate && !toDate">
+    <b>Please select From and To date to view downtime records.</b>
+  </p>
+
+  <p class="error-msg" *ngIf="dateError">
+    {{ dateError }}
+  </p>
+
+  <div class="table-card">
+    <table>
+      <tr>
+        <th>Machine</th>
+        <th>Date</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Duration</th>
+        <th>Reason</th>
+      </tr>
+
+      <tr *ngFor="let item of filteredDowntime">
+        <td>{{ item.machine }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.from }}</td>
+        <td>{{ item.to }}</td>
+        <td>{{ item.duration }}</td>
+        <td>{{ item.reason }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="no-data"
+   *ngIf="filteredDowntime.length === 0 && fromDate && toDate && !dateError">
+  No downtime records found
+</p>
+</div>

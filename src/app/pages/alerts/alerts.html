@@ -1,0 +1,139 @@
+<div class="page">
+
+  <h1>Alerts</h1>
+  <p>Machine issues and warning messages</p>
+
+  <!-- FILTERS -->
+
+  <div class="filter-box">
+
+    <label>Severity:</label>
+
+    <select [(ngModel)]="severityFilter">
+      <option *ngFor="let severity of severities">
+        {{ severity }}
+      </option>
+    </select>
+
+    <label>Machine:</label>
+
+    <select [(ngModel)]="machineFilter">
+      <option *ngFor="let machine of machines">
+        {{ machine }}
+      </option>
+    </select>
+
+    <label>Status:</label>
+
+    <select [(ngModel)]="statusFilter">
+      <option *ngFor="let status of statuses">
+        {{ status }}
+      </option>
+    </select>
+
+    <label>From:</label>
+
+    <input type="date" [(ngModel)]="fromDate">
+
+    <label>To:</label>
+
+    <input type="date" [(ngModel)]="toDate">
+
+    <button (click)="clearFilters()">
+      Clear
+    </button>
+
+  </div>
+
+  <!-- INFO MESSAGE -->
+
+  <p class="info-msg" *ngIf="!fromDate && !toDate">
+   <b>Please select From and To date to view alert records.</b>
+  </p>
+
+  <!-- ERROR MESSAGE -->
+
+  <p class="error-msg" *ngIf="dateError">
+    {{ dateError }}
+  </p>
+
+  <!-- TABLE -->
+
+  <div class="table-card">
+
+    <table>
+
+      <tr>
+        <th>ID</th>
+        <th>Machine</th>
+        <th>Message</th>
+        <th>Severity</th>
+        <th>Time</th>
+        <th>Ack?</th>
+        <th>Action</th>
+      </tr>
+
+      <tr *ngFor="let alert of filteredAlerts">
+
+        <td>{{ alert.id }}</td>
+
+        <td>{{ alert.machine }}</td>
+
+        <td>{{ alert.message }}</td>
+
+        <td
+          [ngClass]="{
+            'high': alert.severity === 'High',
+            'medium': alert.severity === 'Medium'
+          }"
+        >
+          {{ alert.severity }}
+        </td>
+
+        <td>{{ alert.time }}</td>
+
+        <td>
+
+          <span
+            *ngIf="alert.acknowledged"
+            class="yes"
+          >
+            Yes
+          </span>
+
+          <span
+            *ngIf="!alert.acknowledged"
+            class="no"
+          >
+            No
+          </span>
+
+        </td>
+
+        <td>
+
+          <button
+            *ngIf="!alert.acknowledged && canAcknowledge()"
+            class="ack-btn"
+            (click)="acknowledge(alert)"
+          >
+            Acknowledge
+          </button>
+
+          <button
+            *ngIf="alert.acknowledged || !canAcknowledge()"
+            class="view-btn"
+          >
+            View
+          </button>
+
+        </td>
+
+      </tr>
+
+    </table>
+
+  </div>
+
+</div>
+

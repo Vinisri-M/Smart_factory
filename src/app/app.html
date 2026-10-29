@@ -1,0 +1,18 @@
+<div class="layout">
+
+  <div class="sidebar" *ngIf="!isLoginPage()">
+    <h2>Smart Factory</h2>
+
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a *ngIf="isAdmin() || isSupervisor() || isMaintenance()" routerLink="/alerts" routerLinkActive="active">Alerts</a>
+    <a *ngIf="isAdmin() || isMaintenance()" routerLink="/downtime" routerLinkActive="active">Downtime</a>
+    <a *ngIf="isAdmin() || isSupervisor()" routerLink="/reports" routerLinkActive="active">Reports</a>
+    <a *ngIf="isAdmin()" routerLink="/users" routerLinkActive="active">User Management</a>
+    <a *ngIf="isAdmin() || isSupervisor()" routerLink="/employees" routerLinkActive="active">Employees</a>
+  </div>
+
+  <div class="main-content" [class.full]="isLoginPage()">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

@@ -1,0 +1,343 @@
+<div class="page">
+<h2>Reports Module</h2>
+
+
+<div class="tabs">
+  <button (click)="activeTab='downtime'">Downtime</button>
+  <button (click)="activeTab='fault'">Fault</button>
+  <button (click)="activeTab='performance'">Performance</button>
+  <button (click)="activeTab='alert'">Alert</button>
+</div>
+
+<div *ngIf="activeTab==='downtime'">
+
+  <h3>Downtime Report</h3>
+
+  <input type="date" [(ngModel)]="fromDate" (ngModelChange)="onFilterChange()">
+  <input type="date" [(ngModel)]="toDate" (ngModelChange)="onFilterChange()">
+  <p class="date-error" *ngIf="dateError">
+  {{dateError}}
+</p>
+  
+
+  <select [(ngModel)]="machineFilter" (change)="onFilterChange()">
+    <option value="All">All</option>
+    <option *ngFor="let d of downtimeList" [value]="d.machine">
+      {{d.machine}}
+    </option>
+  </select>
+
+  <button (click)="exportCSV()">Export CSV</button>
+  <button (click)="printReport()">Print</button>
+
+  <canvas baseChart [data]="downtimeChartData" [type]="barType"></canvas>
+
+  <table>
+    <tr>
+      <th>Machine</th>
+      <th>Total Downtime (hrs)</th>
+    </tr>
+
+    <tr *ngFor="let d of filteredDowntime">
+      <td>{{d.machine}}</td>
+      <td>{{convertToHours(d)}}</td>
+    </tr>
+  </table>
+
+</div>
+
+
+<div *ngIf="activeTab==='fault'">
+
+  <h3>Fault Analysis</h3>
+
+  <div class="filters">
+
+    Date:
+
+    <!-- FROM -->
+    <input
+      type="date"
+      [(ngModel)]="faultFromDate"
+      (change)="onFaultFilterChange()"
+    >
+
+    <!-- TO -->
+    <input
+      type="date"
+      [(ngModel)]="faultToDate"
+      (change)="onFaultFilterChange()"
+    >
+
+    <!-- MACHINE -->
+    <select
+      [(ngModel)]="faultMachine"
+      (change)="onFaultFilterChange()">
+   
+      <option
+        *ngFor="let m of faultMachines"
+        [value]="m"
+      >
+        {{m}}
+      </option>
+
+    </select>
+
+  </div>
+
+  <!-- 🔥 ERROR -->
+  <p
+    class="date-error"
+    *ngIf="faultDateError"
+  >
+    {{ faultDateError }}
+  </p>
+
+
+  <!-- 🔥 PIE CHART -->
+  <div *ngIf="filteredFaults.length > 0">
+
+    <h4>Pie Chart: Faults by Severity</h4>
+
+    <canvas
+      baseChart
+      [data]="faultChartData"
+      [type]="pieType">
+    </canvas>
+
+  </div>
+
+
+  <!-- 🔥 LINE CHART -->
+  <div *ngIf="filteredFaults.length > 0">
+
+    <h4>Line Chart: Severity Trend</h4>
+
+    <canvas
+      baseChart
+      [data]="faultTrendData"
+      [type]="lineType">
+    </canvas>
+
+  </div>
+
+
+  <!-- 🔥 TABLE -->
+  <div *ngIf="filteredFaults.length > 0">
+
+    <h4>Table</h4>
+
+    <table>
+
+      <tr>
+        <th>Machine</th>
+        <th>Severity</th>
+      </tr>
+
+      <tr *ngFor="let f of filteredFaults">
+
+        <td>{{f.machine}}</td>
+        <td>{{f.severity}}</td>
+
+      </tr>
+
+    </table>
+
+  </div>
+
+</div>
+
+<div *ngIf="activeTab==='performance'">
+
+  <h3>Machine Performance</h3>
+
+  <!-- FILTERS -->
+  <div class="filters">
+
+    Date:
+
+    <!-- FROM -->
+    <input
+      type="date"
+      [(ngModel)]="perfFromDate"
+      (change)="onPerformanceChange()"
+    >
+
+    <!-- TO -->
+    <input
+      type="date"
+      [(ngModel)]="perfToDate"
+      (change)="onPerformanceChange()"
+    >
+
+    <!-- MACHINE -->
+    <select
+      [(ngModel)]="selectedMachine"
+      (change)="onPerformanceChange()"
+    >
+
+      <option value="All">All</option>
+
+      <option
+        *ngFor="let m of performanceMachines"
+        [value]="m"
+      >
+        {{m}}
+      </option>
+
+    </select>
+
+  </div>
+
+  <!-- 🔥 ERROR -->
+  <p
+    class="date-error"
+    *ngIf="performanceDateError"
+  >
+    {{ performanceDateError }}
+  </p>
+
+
+  <!-- 🔥 KPI -->
+  <div *ngIf="filteredPerformance.length > 0">
+
+    <p>
+
+      Avg Temp:
+      {{avgTemp}}
+
+      |
+
+      Uptime:
+      {{uptime}}%
+
+      |
+
+      Utilization:
+      {{utilization}}%
+
+    </p>
+
+  </div>
+
+
+  <!-- 🔥 CHART -->
+  <div *ngIf="filteredPerformance.length > 0">
+
+    <canvas
+      baseChart
+      [data]="performanceChartData"
+      [type]="lineType1">
+    </canvas>
+
+  </div>
+
+</div>
+<div *ngIf="activeTab==='alert'">
+
+  <h3>Alert Reports</h3>
+
+  <!-- FILTERS -->
+  <div class="filters">
+
+    Date:
+
+    <!-- FROM -->
+    <input
+      type="date"
+      [(ngModel)]="alertFromDate"
+      (change)="onAlertChange()"
+    >
+
+    <!-- TO -->
+    <input
+      type="date"
+      [(ngModel)]="alertToDate"
+      (change)="onAlertChange()"
+    >
+
+    <!-- STATUS -->
+    <select
+      [(ngModel)]="alertStatus"
+      (change)="onAlertChange()"
+    >
+
+      <option
+        *ngFor="let s of alertStatuses"
+        [value]="s"
+      >
+        {{s}}
+      </option>
+
+    </select>
+
+    <!-- ROLE -->
+    <select
+      [(ngModel)]="alertRole"
+      (change)="onAlertChange()"
+    >
+
+      <option
+        *ngFor="let r of alertRoles"
+        [value]="r"
+      >
+        {{r}}
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- 🔥 ERROR -->
+  <p
+    class="date-error"
+    *ngIf="alertDateError"
+  >
+    {{ alertDateError }}
+  </p>
+
+
+  <!-- 🔥 CHART -->
+  <div *ngIf="filteredAlerts.length > 0">
+
+    <h4>Alert Status Chart</h4>
+
+    <canvas
+      baseChart
+      [data]="alertChartData"
+      [type]="'bar'">
+    </canvas>
+
+  </div>
+
+
+  <!-- 🔥 TABLE -->
+  <div *ngIf="filteredAlerts.length > 0">
+
+    <h4>Alert Table</h4>
+
+    <table>
+
+      <tr>
+        <th>Machine</th>
+        <th>Status</th>
+        <th>Role</th>
+        <th>Response</th>
+      </tr>
+
+      <tr *ngFor="let a of filteredAlerts">
+
+        <td>{{a.machine}}</td>
+        <td>{{a.status}}</td>
+        <td>{{a.role}}</td>
+        <td>{{a.response}} mins</td>
+
+      </tr>
+
+    </table>
+
+  </div>
+
+</div>
+</div>

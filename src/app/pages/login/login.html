@@ -1,0 +1,68 @@
+<div class="login-container">
+  <div class="login-box">
+    <h2>Smart Factory Login</h2>
+
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+
+      <label>Username / EMP ID</label>
+      <input
+        type="text"
+        name="username"
+        placeholder="Enter EMP ID"
+        [(ngModel)]="username"
+        required
+        minlength="5"
+        pattern="^(ADM|SUP|OPR|MNT)[0-9]{3}$"
+        #userInput="ngModel"
+      >
+
+      <div class="error-box" *ngIf="userInput.invalid && userInput.touched">
+        <small *ngIf="userInput.errors?.['required']">
+          Username / EMP ID is required
+        </small>
+
+        <small *ngIf="userInput.errors?.['minlength']">
+          Minimum 6 characters required
+        </small>
+
+        <small *ngIf="userInput.errors?.['pattern']">
+          EMP ID must be like ADM001, SUP101, OPR201, or MNT301
+        </small>
+      </div>
+
+      <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter password"
+        [(ngModel)]="password"
+        required
+        minlength="4"
+        #passInput="ngModel"
+      >
+
+      <div class="error-box" *ngIf="passInput.invalid && passInput.touched">
+        <small *ngIf="passInput.errors?.['required']">
+          Password is required
+        </small>
+
+        <small *ngIf="passInput.errors?.['minlength']">
+          Password must be minimum 4 characters
+        </small>
+      </div>
+
+      <p class="role-text">Role: Auto from backend</p>
+
+      <div class="error-box" *ngIf="error">
+        <small>{{ error }}</small>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid || loading">
+        {{ loading ? 'Logging in...' : 'Login' }}
+      </button>
+
+    </form>
+
+    <p class="footer">© Smart Factory Team</p>
+  </div>
+</div>

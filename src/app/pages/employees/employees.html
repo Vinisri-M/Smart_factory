@@ -1,0 +1,187 @@
+<div class="page">
+
+  <h1>Employee Work</h1>
+  <p>Track employee working hours and attendance</p>
+
+  <!-- TOP CARDS -->
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Total Employees</h3>
+      <p>{{ employees.length }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Hours</h3>
+      <p>{{ totalHours }} hrs</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Leave Days</h3>
+      <p>{{ totalLeaves }}</p>
+    </div>
+
+  </div>
+
+  <!-- SEARCH + FILTER -->
+
+  <div class="top-bar">
+
+    <input
+      type="text"
+      placeholder="Search employee by name..."
+      [(ngModel)]="searchText"
+    >
+
+    <select [(ngModel)]="roleFilter">
+
+      <option value="All">
+        All
+      </option>
+
+      <option value="Admin">
+        Admin
+      </option>
+
+      <option value="Supervisor">
+        Supervisor
+      </option>
+
+      <option value="Operator">
+        Operator
+      </option>
+
+      <option value="Maintenance">
+        Maintenance
+      </option>
+
+    </select>
+
+    <button class="reset-btn" (click)="resetData()">
+      Reset Data
+    </button>
+
+  </div>
+
+  <!-- EDIT FORM -->
+
+  <div class="form-box" *ngIf="selectedEmployee">
+
+    <h2>
+      Update Work Details - {{ selectedEmployee.name }}
+    </h2>
+
+    <div class="edit-form">
+
+      <!-- HOURS -->
+
+      <div class="field-group">
+
+        <label>Hours Worked</label>
+
+        <input
+          type="number"
+          [(ngModel)]="editEmployee.hoursWorked"
+          placeholder="Enter working hours"
+        >
+
+      </div>
+
+      <!-- LEAVES -->
+
+      <div class="field-group">
+
+        <label>Leave Days</label>
+
+        <input
+          type="number"
+          [(ngModel)]="editEmployee.leaveDays"
+          placeholder="Enter leave days"
+        >
+
+      </div>
+
+      <!-- WORKED DAYS -->
+
+      <div class="field-group">
+
+        <label>Days Worked</label>
+
+        <input
+          type="number"
+          [(ngModel)]="editEmployee.workedDays"
+          placeholder="Enter worked days"
+        >
+
+      </div>
+
+      <!-- BUTTONS -->
+<div class="button-group">
+
+  <button
+    class="save-btn"
+    (click)="saveWorkDetails()"
+  >
+    Save
+  </button>
+
+  <button
+    class="cancel-btn"
+    (click)="cancelEdit()"
+  >
+    Cancel
+  </button>
+
+</div>
+      
+
+    </div>
+
+  </div>
+
+  <!-- TABLE -->
+
+  <div class="table-card">
+
+    <table>
+
+      <tr>
+        <th>Employee Name</th>
+        <th>Role</th>
+        <th>Hours Worked</th>
+        <th>Leave Days</th>
+        <th>Days Worked / Month</th>
+        <th>Action</th>
+      </tr>
+
+      <tr *ngFor="let employee of filteredEmployees">
+
+        <td>{{ employee.name }}</td>
+
+        <td>{{ employee.role }}</td>
+
+        <td>{{ employee.hoursWorked }} hrs</td>
+
+        <td>{{ employee.leaveDays }}</td>
+
+        <td>{{ employee.workedDays }}</td>
+
+        <td>
+
+          <button
+            class="edit-btn"
+            (click)="editWork(employee)"
+          >
+            Edit Work
+          </button>
+
+        </td>
+
+      </tr>
+
+    </table>
+
+  </div>
+
+</div>
